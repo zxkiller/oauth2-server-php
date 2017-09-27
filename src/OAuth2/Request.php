@@ -225,7 +225,7 @@ class Request implements RequestInterface
     {
         $class = get_called_class();
 
-        $get = \think\Request::instance()->get();
+        $get = \think\Request::instance()->get();var_dump($get);
         $get = $get === null ? array() : (array)$get;
         
         $post = \think\Request::instance()->post();
