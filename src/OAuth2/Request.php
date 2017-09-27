@@ -243,8 +243,6 @@ class Request implements RequestInterface
         $server = \think\Request::instance()->server();
         $server = $server === null ? array() : (array)$server;
         
-        var_dump($get);var_dump($post);var_dump($attributes);var_dump($cookie);var_dump($files);var_dump($server);
-        
         /** @var Request $request */
         $request = new $class($get, $post, $attributes, $cookie, $files, $server);
 
