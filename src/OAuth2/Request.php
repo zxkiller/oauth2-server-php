@@ -225,11 +225,14 @@ class Request implements RequestInterface
     {
         $class = get_called_class();
 
-        $get = \think\Request::instance()->get();var_dump($get);
+        $get = \think\Request::instance()->get();
         $get = $get === null ? array() : (array)$get;
         
         $post = \think\Request::instance()->post();
         $post = $post === null ? array() : (array)$post;
+        
+        $attributes = \think\Request::instance()->route();
+        $attributes = $attributes === null ? array() : (array)$attributes;
         
         $cookie = \think\Request::instance()->cookie();
         $cookie = $cookie === null ? array() : (array)$cookie;
@@ -240,10 +243,10 @@ class Request implements RequestInterface
         $server = \think\Request::instance()->server();
         $server = $server === null ? array() : (array)$server;
         
-        var_dump($get);var_dump($post);var_dump($cookie);var_dump($files);var_dump($server);
+        var_dump($get);var_dump($post);var_dump($attributes);var_dump($cookie);var_dump($files);var_dump($server);
         
         /** @var Request $request */
-        $request = new $class($get, $post, array(), $cookie, $files, $server);
+        $request = new $class($get, $post, $attributes, $cookie, $files, $server);
 
         $contentType = $request->server('CONTENT_TYPE', '');
         $requestMethod = $request->server('REQUEST_METHOD', 'GET');
